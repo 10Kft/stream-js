@@ -255,7 +255,9 @@ StreamClient.prototype = {
     }
 
     utils.validateFeedSlug(feedSlug);
-    utils.validateUserId(userId);
+    // ADDED .split(' ') due to this module appending api token
+    // to user id when calling unfollow()
+    utils.validateUserId(userId.split(' ')[0]);
 
     // raise an error if there is no token
     if (!this.apiSecret && !token) {
